@@ -1,22 +1,4 @@
-import std/strutils
-import std/math
+import strutils, sequtils, sugar
 
-proc getReadings(): seq[int] =
-    let inputFile = open("input_1.txt")
-    defer: inputFile.close()
-
-    while not inputFile.endOfFile:
-        result.add(parseInt(inputFile.readLine()))
-
-var readings = getReadings()
-
-var windowedReadings: seq[int]
-for index in 0..readings.len-3:
-    windowedReadings.add(sum(readings[index..index+2]))
-
-var increases: int = 0
-for i in 1..windowedReadings.len-1:
-  if windowedReadings[i] > windowedReadings[i-1]:
-    increases += 1
-
-echo increases
+var readings = readFile("input_1.txt").splitlines().map(value => parseInt(value))
+echo zip(readings, readings[3..^1]).filterIt(it[1] > it[0]).len
