@@ -1,18 +1,9 @@
-import strutils
+var horizontal, depth = 0
 
-var horizontal = 0
-var depth = 0
+proc down(amount: int) = depth += amount
+proc up(amount: int) = depth -= amount
+proc forward(amount: int) = horizontal += amount
 
-var course = readFile("input_1.txt").splitLines()
-for input in course:
-    var direction = input.split(" ")[0] 
-    var amount = parseInt(input.split(" ")[1]) 
-    case direction:
-      of "forward":
-          horizontal += amount
-      of "down":
-          depth += amount
-      of "up":
-          depth -= amount
+include input
 
 echo horizontal*depth
