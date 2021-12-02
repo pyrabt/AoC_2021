@@ -15,4 +15,4 @@ for input in course:
       of "up":
           depth -= amount
 
-echo horizontal, " * ", depth, " = ",horizontal*depth
+echo horizontal*depth
